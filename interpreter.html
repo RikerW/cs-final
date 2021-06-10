@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<meta charset="utf-8"/>
+	<head>
+		<title>Brain-Flak Interpreter</title>
+		<link rel="stylesheet" href="style/main.css" type="text/css" media="screen">
+	</head>
+	<body>
+		<div class="top">
+			<div class="title"><h1>Brain-Flak Interpreter</h1></div>
+		</div>
+		<div class="main">
+			<p><a href="./index.html">(Back to main page)</a></p>
+			<p>This is a functioning Brain-Flak interpreter, written in Javascript. The source is available <a href="resources/interpreter.js">here</a>.</p>
+			<p>Notes on this implementation:</p>
+			<ul>
+				<li>Only the 8 command characters, spaces and newlines are accepted. This means no comments - otherwise, an error will be thrown.</li>
+				<li>This implementation uses standard JavaScript integer sizes, so try not to do anything greater than 2^32.</li>
+				<li>Output is interpreted as a UTF-16 character code, so if your browser refuses to show some of the output properly that's why - this font doesn't support every single character. The converter below can convert any UTF-16 character to its code for your use in a program. Some characters with higher codepoints to mess around with are the emojis ✅✨🥺😔.</li>
+				<li>This program makes sound. Character code <code>U+0007</code> treated as a bell character, and will make noise instead of displaying in the output area.</li>
+				<li>Hitting enter will attempt to run the code - if you want a second line in the editor, use shift-enter.</li>
+			</ul>
+			<p><a href="https://www.fileformat.info/info/charset/UTF-16/list.htm">Here's a convenient UTF-16 character table for your perusal.</a>There's also an ASCII character table at the bottom of the page.</p>
+			<form>
+				<label>Character to convert:</label>
+				<input type="text" id="unicode" value="✅">
+				<label>UTF-16 character code:</label>
+				<input type="text" id="charactercode" value="9989">
+				<label>Brainflak code for character:</label>
+				<input type="text" id="brainflakcode" value="9989">
+			</form>
+			<div class="row">
+				<div class="column" style="margin-right:20px">
+					<h3 style="display:inline-block"> Code:</h3>
+				</div>
+				<div class="column" style="margin-right:20px"><h3>Input:</h3></div>
+			</div>
+			<div class="row">
+				<div class="column" style="margin-right:20px"><textarea id="code" spellcheck="false" rows=8 cols=60></textarea></div>
+				<div class="column" style="margin-right:20px"><textarea id="input" spellcheck="false" rows=8 cols=60></textarea></div>
+			</div>
+			
+			<div class="row">
+				<div class="column" style="margin-right:20px"><h3>Output:</h3></div>
+				<div class="column" style="margin-right:20px"><h3>Errors:</h3></div>
+			</div>
+			<div class="row">
+				<div class="column" style="margin-right:20px"><textarea id="stdout" spellcheck="false" rows=8 cols=60></textarea></div>
+				<div class="column" style="margin-right:20px"><textarea id="stderr" spellcheck="false" rows=8 cols=60></textarea></div>
+			</div>
+		</div>
+		<img src="resources/asciitable.gif" style="margin-top:40px; margin-left:25%" width=50%>
+		<script type="text/javascript" src="resources/interpreter.js"></script>
+	</body>
+</html>

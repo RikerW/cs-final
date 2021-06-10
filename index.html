@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Brain-Flak</title>
+		<link rel="stylesheet" href="style/main.css" type="text/css" media="screen">
+	</head>
+	<body>
+		<div class="top">
+			<div class="title"><h1>Brain-Flak</h1></div>
+		</div>
+		<div class="container">
+			<div class="main">
+				<h2>Introduction</h2>
+				<p>Brain-Flak is a <a href="https://esolangs.org/wiki/Turing_tarpit">Turing Tarpit</a> created by a <a href="https://github.com/DJMcMayhem">friend of mine</a>.</p>
+				<p>As a Turing tarpit, in theory this language in Turing-complete but in practice is a huge pain to actually do anything in.</p>
+				<p>I've created an interpreter for Brain-Flak written in JavaScript, hosted here with a brief explanation and overview of the language. <a href="./interpreter.html">Go here for the interpreter.</a></p>
+				<h3>Structure</h3>
+				<p>The data storage in Brain-Flak is a grand total of two stacks. One stack is marked as the active at a time, but the active stack can swap during runtime.</p>
+				<p>The stacks are each theoretically infinite and capable of holding an arbitrary precision signed integer. In practice, interpreters obviously aren't capable of that, but this is a requirement for Turing-completeness.</p>
+
+				<h3>Commands</h3>
+				<p>Brain-Flak has a total of 8 characters in its syntax: <code>()[]{}&lt;&gt;</code>. They form a total of 8 possible commands: 4 possible nilads (commands with no arguments), and 4 possible monads (commands with one argument).</p>
+				<br/>
+				<table>
+					<caption></caption> <!-- required for linter-->
+					<tr>
+						<th scope="col">Command</th>
+						<th scope="col">Effect</th>
+					</tr>
+					<tr>
+						<td><code>()</code></td>
+						<td>Evaluates to <code>1</code> (does not push to stack, merely evaluates).</td>
+					</tr>
+					<tr>
+						<td><code>[]</code></td>
+						<td>Evaluates to the height of the current stack.</td>
+					</tr>
+					<tr>
+						<td><code>{}</code></td>
+						<td>Evaluates to the current value on the top of the active stack, popping it in the progress.</td>
+					</tr>
+					<tr>
+						<td><code>&lt;&gt;</code></td>
+						<td>Toggles the active stack, and evaluates to <code>0</code>.</td>
+					</tr>
+					<tr>
+						<td><code>(n)</code></td>
+						<td>Pushes <code>n</code> to the active stack.</td>
+					</tr>
+					<tr>
+						<td><code>[n]</code></td>
+						<td>Evaluates to negative <code>n</code>.</td>
+					</tr>
+					<tr>
+						<td><code>{foo}</code></td>
+						<td>Loops, executing whatever is between the opening and closing brace, until the top of the stack reaches <code>0</code> by any means.</td>
+					</tr>
+					<tr>
+						<td><code>&lt;foo&gt;</code></td>
+						<td>Executes whatever is between the opening and closing angle brackets, but always evaluates to 0. For example, <code>()</code> evaluates to <code>1</code> but <code>&lt;()&gt;</code> evaluates to <code>0</code>.</td>
+					</tr>
+				</table>
+				<p>The presence of other commands in a Brain-Flak program is undefined behavior, but is commonly treated as either a no-op or as invalid command. It's common for spaces and newlines to be no-ops either way.</p>
+				<p>Similarly, there is no actual way to comment your Brain-Flak code according to the specification. Various interpreters have used single-line comments starting with a <code>#</code> and ending with a newline, or block-quote comments beginning and ending with hashmarks, or other options.</p>
+				<h2>Music</h2>
+				<p>This song was playing on loop while the author drafted the first version of this language, reportedly. DJ has stated as such on Discord before.</p>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/VcPsHuDohuU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<p>The song is "Black Honey" by Thrice, from the album "To Be Everywhere Is To Be Nowhere".</p>
+				<img src="resources/tobeeverywhere.png" width=230p>
+				<iframe title="To Be Everywhere Is To Be Nowhere Spotify Link" src="https://open.spotify.com/embed/album/4hFDcpvIU9F4OleRAR9nNZ" width=100% height="80" allow="encrypted-media"></iframe>
+				<p>My personal favorite album by them is Palms.</p>
+				<img src="./resources/palms.jpg" width=230px>
+				<iframe title="Palms Spotify Link" src="https://open.spotify.com/embed/album/33QALYQaToksvmXeDxqBvE?theme=0" width=100% height="80" allow="encrypted-media"></iframe>
+			</div>
+		</div>
+	</body>
+</html>
